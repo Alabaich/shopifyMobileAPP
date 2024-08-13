@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "632501072408",
+    "project_id": "renoz-mobile-app",
+    "storage_bucket": "renoz-mobile-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632501072408:android:c74b1e6907a77eb5bd096d",
+        "android_client_info": {
+          "package_name": "com.newmobileapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsXAC17UBLBePPkA4x5RkJ1ELpmZfX9n4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
