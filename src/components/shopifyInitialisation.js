@@ -1,8 +1,10 @@
 import Client from 'shopify-buy';
 
+import { SHOPIFY_DOMAIN, ACCESS_TOKEN } from './shopifyClient';
+
 const client = Client.buildClient({
-  domain: 'renozcentre.myshopify.com',
-  storefrontAccessToken: '9e2b15437b50c2e5ea05d717f72b129b',
+  domain: SHOPIFY_DOMAIN,
+  storefrontAccessToken: ACCESS_TOKEN,
 });
 
 export default client;

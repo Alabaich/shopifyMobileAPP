@@ -207,6 +207,7 @@ const ProductDetail = ({ route }) => {
             }
             return null; // Return null if the option has only one value
           })}
+          <Text>{product.description}</Text>
         </View>
       </ScrollView>
       <Modal

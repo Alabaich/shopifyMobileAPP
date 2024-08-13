@@ -1,7 +1,7 @@
 // ShopifyCartService.js
-
-const domain = 'renozcentre.myshopify.com';
-const storefrontAccessToken = '9e2b15437b50c2e5ea05d717f72b129b';
+import { ACCESS_TOKEN, SHOPIFY_DOMAIN } from "./shopifyClient";
+const domain = SHOPIFY_DOMAIN;
+const storefrontAccessToken = ACCESS_TOKEN;
 const shopifyApiEndpoint = `https://${domain}/api/2024-01/graphql.json`;
 
 // Helper function to perform GraphQL operations

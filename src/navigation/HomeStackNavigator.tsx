@@ -61,7 +61,7 @@ const HomeStackNavigator = () => {
         component={ProductDetail}
         options={({ navigation }) => ({ // This function provides you with the navigation prop
           headerTransparent: true,
-          header: () => <ProductDetailHeader navigation={navigation} />, // Now you can pass it to HomeHeader
+          header: () => <ProductDetailHeader navigation={navigation}  />, // Now you can pass it to HomeHeader
         })}
       />
 

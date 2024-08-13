@@ -1,12 +1,34 @@
 // ProductDetailHeader.js
 import React from 'react';
-import { View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { Share, View, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 // Import your icons
 import BackIcon from '../icons/back.png'; // Replace with your icon path
 import HeartIcon from '../icons/heart.png'; // Replace with your icon path
 import ShareIcon from '../icons/share.png'; // Replace with your icon path
+
+const handleShare = async () => {
+  try {
+    const result = await Share.share({
+      message: 'Check out this amazing product!',
+      url: product.url, // Replace with the URL or content you want to share
+      title: 'Share via',
+    });
+
+    if (result.action === Share.sharedAction) {
+      if (result.activityType) {
+        console.log('Shared with activity type of:', result.activityType);
+      } else {
+        console.log('Shared successfully');
+      }
+    } else if (result.action === Share.dismissedAction) {
+      console.log('Share was dismissed');
+    }
+  } catch (error) {
+    console.error('Error sharing:', error.message);
+  }
+};
 
 const ProductDetailHeader = ({ navigation }) => {
   return (
@@ -19,14 +41,14 @@ const ProductDetailHeader = ({ navigation }) => {
           <Image source={BackIcon} style={styles.icon} />
         </TouchableOpacity>
 
-        <View style={styles.rightIcons}>
-          <TouchableOpacity onPress={() => { /* handle favorite */ }} style={styles.iconContainer} >
+        {/* <View style={styles.rightIcons}>
+          <TouchableOpacity onPress={() => {}} style={styles.iconContainer} >
             <Image source={HeartIcon} style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => { /* handle share */ }} style={styles.iconContainer} >
+          <TouchableOpacity onPress={handleShare} style={styles.iconContainer} >
             <Image source={ShareIcon} style={styles.icon} />
           </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
     </LinearGradient>
   );
@@ -55,7 +77,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 25,
     height: 25,
-    tintColor: 'black', // if your icons are not white
+    tintColor: 'black',
   },
   rightIcons: {
     flexDirection: 'row',
@@ -63,7 +85,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     gap: 10
 },
-// ... other styles you might need
 });
 
 export default ProductDetailHeader;
