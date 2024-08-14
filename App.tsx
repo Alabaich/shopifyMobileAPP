@@ -11,34 +11,53 @@ import 'react-native-gesture-handler';
 import { NotificationsProvider, useNotifications } from './src/NotificationsContext';
 import { setupNotifications, setupBackgroundHandler, setupForegroundHandler, getTokenAndSendToServer } from './src/components/notificationService';
 
-// const AuthSwitch = () => {
-//   const { addNotification } = useNotifications();
+import messaging from '@react-native-firebase/messaging';
 
-//   useEffect(() => {
-//     setupNotifications();
-//     setupBackgroundHandler(addNotification);
 
-//     const unsubscribe = setupForegroundHandler(addNotification);
 
-//     return unsubscribe;
-//   }, [addNotification]);
 
-//   if (isLoading) {
-//     return (
-//       <LinearGradient
-//         colors={['#535353', '#000']}
-//         start={{x: 0, y: 0}} end={{x: 1, y: 1}}
-//         style={styles.loadingContainer}
-//       >
-//         <ActivityIndicator size="large" color="#FFF" />
-//         <Image source={logoWhite} style={styles.logo} /> 
-//         <Text style={styles.loadScreenText}>Everything For Your Renovation</Text>
-//       </LinearGradient>
-//     );
-//   }
 
-//   return <BottomTabNavigator /> ;
-// };
+const AuthSwitch = () => {
+  const { addNotification } = useNotifications();
+
+
+  async function getFCMToken() {
+    const token = await messaging().getToken();
+    console.log('FCM Registration Token:', token);
+  }
+  
+  useEffect(() => {
+    getFCMToken();
+  }, []);
+
+
+
+
+  useEffect(() => {
+    setupNotifications();
+    setupBackgroundHandler(addNotification);
+
+    const unsubscribe = setupForegroundHandler(addNotification);
+
+    return unsubscribe;
+  }, [addNotification]);
+
+  //  if (isLoading) {
+  //    return (
+  //      <LinearGradient
+  //        colors={['#535353', '#000']}
+  //        start={{x: 0, y: 0}} end={{x: 1, y: 1}}
+  //        style={styles.loadingContainer}
+  //      >
+  //        <ActivityIndicator size="large" color="#FFF" />
+  //        <Image source={logoWhite} style={styles.logo} /> 
+  //        <Text style={styles.loadScreenText}>Everything For Your Renovation</Text>
+  //      </LinearGradient>
+  //    );
+  //  }
+
+  return <BottomTabNavigator /> ;
+};
 
  const linking = {
    prefixes: ['myapp://'],
@@ -71,7 +90,7 @@ const App = () => {
     <NotificationsProvider>
       <SafeAreaView style={styles.container}>
       <NavigationContainer linking={linking}>
-        <BottomTabNavigator />
+        <AuthSwitch />
       </NavigationContainer>
 
       </SafeAreaView>
