@@ -75,4 +75,5 @@ yarn-error.log
 
 
 src/components/shopifyClient.js
-
+android/app/google-services.json
+ios/GoogleService-info.plist
